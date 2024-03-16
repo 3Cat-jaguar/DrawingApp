@@ -71,10 +71,3 @@ fun DrawingScreen(
         }
     }
 }
-
-data class Line(
-    val start: Offset,
-    val end: Offset,
-    val color: Color = Color.Black,
-    val strockWidth : Dp = 1.dp
-)
