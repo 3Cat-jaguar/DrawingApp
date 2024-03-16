@@ -4,27 +4,34 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import rootbalance.project.drawing_app.ui.theme.DrawingAppTheme
 
 class MainActivity : ComponentActivity() {
+    private val viewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             DrawingAppTheme {
                 // A surface container using the 'background' color from the theme
@@ -32,7 +39,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DrawingScreen()
+                    Box(contentAlignment = Alignment.BottomEnd) {
+                        DrawingScreen(viewModel)
+                        Icon(
+                            modifier = Modifier.padding(40.dp).clickable { viewModel.deleteAllLines() },
+                            painter = painterResource(id = R.drawable.baseline_replay_24),
+                            contentDescription = "clean canvas"
+                        )
+                    }
                 }
             }
         }
@@ -41,10 +55,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DrawingScreen(
-    color: Color = Color.Black,
-    strockWidth: Dp = 1.dp
+    viewModel: MainViewModel,
 ) {
-    val lines = remember { mutableStateListOf<Line>() }
+    var lines = remember { viewModel.lines }
     Canvas(
         modifier = Modifier
             .fillMaxSize()
@@ -54,10 +67,10 @@ fun DrawingScreen(
                     val line = Line(
                         start = change.position - dragAmount,
                         end = change.position,
-                        color = color,
-                        strockWidth = strockWidth
+                        color = viewModel.color,
+                        strockWidth = viewModel.strockWidth
                     )
-                    lines.add(line)
+                    viewModel.addLine(line)
                 }
             }) {
         lines.forEach { line ->
