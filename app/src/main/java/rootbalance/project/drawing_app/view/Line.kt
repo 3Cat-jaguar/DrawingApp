@@ -1,4 +1,4 @@
-package rootbalance.project.drawing_app
+package rootbalance.project.drawing_app.view
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color

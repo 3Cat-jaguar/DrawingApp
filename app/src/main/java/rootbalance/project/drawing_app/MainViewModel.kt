@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
+import rootbalance.project.drawing_app.view.Line
 
 class MainViewModel: ViewModel() {
     val lines: MutableList<Line> = mutableStateListOf()
