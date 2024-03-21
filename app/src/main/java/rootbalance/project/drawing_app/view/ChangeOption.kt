@@ -18,8 +18,14 @@ fun ChangeOption(modifier: Modifier, color: Color = Color.Black, strokeWidth: Dp
     val borderColor = if (color == Color.White) Color.Black else color
     Box(
         modifier = modifier.background(Color.White).padding(vertical = 4.dp, horizontal = 20.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
-        Box(modifier = Modifier.fillMaxWidth().height(strokeWidth).background(color).border(color = borderColor, width = 1.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(strokeWidth)
+                .background(color)
+                .border(color = borderColor, width = 1.dp)
+        )
     }
 }

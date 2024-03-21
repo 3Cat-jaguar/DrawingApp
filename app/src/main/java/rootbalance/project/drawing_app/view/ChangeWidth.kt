@@ -30,7 +30,9 @@ fun ChangeWidth(modifier: Modifier, viewModel: MainViewModel) {
         if (isChangeable) {
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change size to 1dp"
+                    ) {
                         viewModel.changeWidth(1.dp)
                         isChangeable = false
                     },
@@ -39,7 +41,9 @@ fun ChangeWidth(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change size to 3dp"
+                    ) {
                         viewModel.changeWidth(3.dp)
                         isChangeable = false
                     },
@@ -48,7 +52,9 @@ fun ChangeWidth(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change size to 5dp"
+                    ) {
                         viewModel.changeWidth(5.dp)
                         isChangeable = false
                     },
@@ -57,7 +63,9 @@ fun ChangeWidth(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change size to 10dp"
+                    ) {
                         viewModel.changeWidth(10.dp)
                         isChangeable = false
                     },
@@ -66,7 +74,9 @@ fun ChangeWidth(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change size to 20dp"
+                    ) {
                         viewModel.changeWidth(20.dp)
                         isChangeable = false
                     },
@@ -75,7 +85,11 @@ fun ChangeWidth(modifier: Modifier, viewModel: MainViewModel) {
             )
         }
         Box(
-            modifier = Modifier.height(OPTION_HEIGHT.dp).clickable { isChangeable = !isChangeable },
+            modifier = Modifier
+                .height(OPTION_HEIGHT.dp)
+                .clickable(
+                    onClickLabel = (if (isChangeable) "close" else "open") + " line size change option"
+                ) { isChangeable = !isChangeable },
             contentAlignment = Alignment.Center
         ) {
             Icon(

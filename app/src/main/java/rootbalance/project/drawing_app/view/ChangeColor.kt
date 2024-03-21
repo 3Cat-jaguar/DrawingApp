@@ -28,7 +28,9 @@ fun ChangeColor(modifier: Modifier, viewModel: MainViewModel) {
         if (isChangeable) {
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change color to black"
+                    ) {
                         viewModel.changeColor(Color.Black)
                         isChangeable = false
                     },
@@ -37,7 +39,9 @@ fun ChangeColor(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change color to red"
+                    ) {
                         viewModel.changeColor(Color.Red)
                         isChangeable = false
                     },
@@ -46,7 +50,9 @@ fun ChangeColor(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change color to blue"
+                    ) {
                         viewModel.changeColor(Color.Blue)
                         isChangeable = false
                     },
@@ -55,7 +61,9 @@ fun ChangeColor(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change color to green"
+                    ) {
                         viewModel.changeColor(Color.Green)
                         isChangeable = false
                     },
@@ -64,7 +72,9 @@ fun ChangeColor(modifier: Modifier, viewModel: MainViewModel) {
             )
             ChangeOption(
                 modifier = Modifier.height(OPTION_HEIGHT.dp)
-                    .clickable {
+                    .clickable(
+                        onClickLabel = "change color to white"
+                    ) {
                         viewModel.changeColor(Color.White)
                         isChangeable = false
                     },
@@ -73,6 +83,12 @@ fun ChangeColor(modifier: Modifier, viewModel: MainViewModel) {
             )
 
         }
-        ChangeOption(modifier = Modifier.height(OPTION_HEIGHT.dp).clickable { isChangeable = !isChangeable }, color = viewModel.color, strokeWidth = colorOptionHeight)
+        ChangeOption(
+            modifier = Modifier
+                .height(OPTION_HEIGHT.dp)
+                .clickable(
+                    onClickLabel = (if (isChangeable) "close" else "open") + " line color change option"
+                ) { isChangeable = !isChangeable },
+            color = viewModel.color, strokeWidth = colorOptionHeight)
     }
 }
