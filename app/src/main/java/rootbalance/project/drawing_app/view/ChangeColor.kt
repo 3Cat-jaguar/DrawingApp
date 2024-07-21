@@ -19,7 +19,7 @@ import rootbalance.project.drawing_app.OPTION_HEIGHT
 @Composable
 fun ChangeColor(modifier: Modifier, viewModel: MainViewModel) {
     var isChangeable by remember { mutableStateOf(false) }
-    val colorOptionHeight = 10.dp
+    val colorOptionHeight = 12.dp
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,

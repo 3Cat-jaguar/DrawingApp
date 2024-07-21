@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
@@ -21,8 +22,7 @@ fun ChangeOption(modifier: Modifier, color: Color = Color.Black, strokeWidth: Dp
     Box(
         modifier = modifier
             .background(Color.White)
-            .padding(vertical = 4.dp, horizontal = 20.dp)
-            .semantics { onClick(label = "change option color $color, size $strokeWidth dp", action = null) },
+            .padding(vertical = 4.dp, horizontal = 20.dp),
         contentAlignment = Alignment.Center,
     ) {
         Box(
@@ -31,6 +31,7 @@ fun ChangeOption(modifier: Modifier, color: Color = Color.Black, strokeWidth: Dp
                 .height(strokeWidth)
                 .background(color)
                 .border(color = borderColor, width = 1.dp)
+                .semantics { contentDescription = "color $color, size $strokeWidth" }
         )
     }
 }

@@ -9,26 +9,28 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import rootbalance.project.drawing_app.view.Line
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     val lines: MutableList<Line> = mutableStateListOf()
-    private val _color: MutableState<Color> = mutableStateOf(Color.Black)
+    private val _color: MutableState<Color> = mutableStateOf(Color.Blue)
     val color: Color
         get() = _color.value
-    private val _strockWidth: MutableState<Dp> = mutableStateOf(1.dp)
+    private val _strockWidth: MutableState<Dp> = mutableStateOf(10.dp)
     val strockWidth: Dp
         get() = _strockWidth.value
 
-    fun deleteAllLines() {
-        lines.clear()
+    fun undoLine() {
+        if (!lines.isEmpty()) lines.removeLast()
     }
+
     fun changeColor(newColor: Color) {
         _color.value = newColor
     }
+
     fun changeWidth(newWidth: Dp) {
         _strockWidth.value = newWidth
     }
+
     fun addLine(line: Line) {
         lines.add(line)
     }
-
 }

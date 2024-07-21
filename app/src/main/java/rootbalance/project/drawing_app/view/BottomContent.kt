@@ -17,22 +17,25 @@ import rootbalance.project.drawing_app.OPTION_HEIGHT
 import rootbalance.project.drawing_app.R
 
 @Composable
-fun BottomContent(modifier: Modifier = Modifier, viewModel: MainViewModel) {
+fun BottomContent(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel,
+) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.Bottom
+        verticalAlignment = Alignment.Bottom,
     ) {
-        ChangeWidth(modifier = Modifier.weight(1f), viewModel = viewModel)
         ChangeColor(modifier = Modifier.weight(1f), viewModel = viewModel)
+        ChangeWidth(modifier = Modifier.weight(1f), viewModel = viewModel)
         Box(
             modifier = Modifier.height(OPTION_HEIGHT.dp).weight(1f),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Icon(
-                modifier = Modifier.clickable { viewModel.deleteAllLines() },
-                painter = painterResource(id = R.drawable.baseline_replay_24),
-                contentDescription = "clean canvas"
+                modifier = Modifier.clickable { viewModel.undoLine() },
+                painter = painterResource(id = R.drawable.outline_backspace_24),
+                contentDescription = "clean canvas",
             )
         }
     }
