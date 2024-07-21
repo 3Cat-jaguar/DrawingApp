@@ -33,6 +33,10 @@ fun ChangeWidth(
         verticalArrangement = Arrangement.Bottom,
     ) {
         if (isChangeable) {
+            ChangeOptionWidth(width = 3.dp, color = viewModel.color) { width ->
+                viewModel.changeWidth(width)
+                isChangeable = false
+            }
             ChangeOptionWidth(width = 5.dp, color = viewModel.color) { width ->
                 viewModel.changeWidth(width)
                 isChangeable = false
